@@ -11,7 +11,7 @@ connectDB();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://productr-frontend-url-g4df.onrender.com",
+    origin: process.env.FRONTEND_URL, 
     credentials: true
   })
 );
