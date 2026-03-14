@@ -246,6 +246,13 @@ export const resendOtp = async (req, res) => {
 export const getProfile = async (req, res) => {
   try {
 
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized access"
+      });
+    }
+
     const user = await User.findById(req.user.id)
       .select("-otp -otpExpire -otpResendTime");
 
